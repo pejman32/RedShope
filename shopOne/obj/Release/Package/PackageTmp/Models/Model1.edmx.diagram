@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="61cfd6a57d3e40d6becd5d0ef2c7b479" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="redShop2Model.tbl_attribute_values" Width="1.5" PointX="3.75" PointY="12.25" />
+        <EntityTypeShape EntityType="redShop2Model.tbl_attributes" Width="1.5" PointX="1.5" PointY="12.375" />
+        <EntityTypeShape EntityType="redShop2Model.tbl_comments" Width="1.5" PointX="6" PointY="3.75" />
+        <EntityTypeShape EntityType="redShop2Model.tbl_images" Width="1.5" PointX="3" PointY="19.875" />
+        <EntityTypeShape EntityType="redShop2Model.tbl_invoice" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="redShop2Model.tbl_product_attribute" Width="1.5" PointX="6" PointY="8.125" />
+        <EntityTypeShape EntityType="redShop2Model.tbl_products" Width="1.5" PointX="0.75" PointY="7.5" />
+        <EntityTypeShape EntityType="redShop2Model.tbl_users" Width="1.5" PointX="3.75" PointY="2.375" />
+        <EntityTypeShape EntityType="redShop2Model.tbl_indexcontents" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="redShop2Model.View_product_attribute" Width="1.5" PointX="8.75" PointY="0.75" />
+        <AssociationConnector Association="redShop2Model.FK_tbl_attribute_values_tbl_attributes" />
+        <AssociationConnector Association="redShop2Model.FK_tbl_product_attribute_tbl_attribute_values" />
+        <AssociationConnector Association="redShop2Model.FK_tbl_product_attribute_tbl_attributes" />
+        <AssociationConnector Association="redShop2Model.FK_tbl_comments_tbl_products" />
+        <AssociationConnector Association="redShop2Model.FK_tbl_comments_tbl_users" />
+        <AssociationConnector Association="redShop2Model.FK_tbl_images_tbl_products" />
+        <AssociationConnector Association="redShop2Model.FK_tbl_invoice_tbl_products" />
+        <AssociationConnector Association="redShop2Model.FK_tbl_invoice_tbl_users" />
+        <AssociationConnector Association="redShop2Model.FK_tbl_product_attribute_tbl_products" />
+        <EntityTypeShape EntityType="redShop2Model.View_comments" Width="1.5" PointX="8.375" PointY="5.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

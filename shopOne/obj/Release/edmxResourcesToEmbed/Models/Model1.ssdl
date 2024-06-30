@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="redShop2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_attribute_values">
+    <Key>
+      <PropertyRef Name="pkID" />
+    </Key>
+    <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FKattribute_ID" Type="int" Nullable="false" />
+    <Property Name="value" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_attributes">
+    <Key>
+      <PropertyRef Name="pkID" />
+    </Key>
+    <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="attribute_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_comments">
+    <Key>
+      <PropertyRef Name="pkId" />
+    </Key>
+    <Property Name="pkId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fkUserID" Type="int" />
+    <Property Name="fkproductID" Type="int" Nullable="false" />
+    <Property Name="time" Type="datetime" Nullable="false" />
+    <Property Name="status" Type="bit" Nullable="false" />
+    <Property Name="Score" Type="int" Nullable="false" />
+    <Property Name="Messages" Type="nvarchar" MaxLength="750" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_images">
+    <Key>
+      <PropertyRef Name="pkId" />
+    </Key>
+    <Property Name="pkId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FKproduct_ID" Type="int" Nullable="false" />
+    <Property Name="banerphoto" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="smallphoto" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="photo_1" Type="nvarchar" MaxLength="50" />
+    <Property Name="photo_2" Type="nvarchar" MaxLength="50" />
+    <Property Name="photo_3" Type="nvarchar" MaxLength="50" />
+    <Property Name="photo_4" Type="nvarchar" MaxLength="50" />
+    <Property Name="photo_5" Type="nvarchar" MaxLength="50" />
+    <Property Name="photo_6" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view '13278_redShop2.dbo.tbl_indexcontents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_indexcontents">
+    <Key>
+      <PropertyRef Name="pkID" />
+      <PropertyRef Name="ContentsName" />
+      <PropertyRef Name="ContentsValue" />
+      <PropertyRef Name="Description" />
+    </Key>
+    <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContentsName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ContentsValue" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_invoice">
+    <Key>
+      <PropertyRef Name="pkID" />
+    </Key>
+    <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="invoice_num" Type="bigint" Nullable="false" />
+    <Property Name="fkProduct_id" Type="int" Nullable="false" />
+    <Property Name="productPrice" Type="bigint" Nullable="false" />
+    <Property Name="fkUser_id" Type="int" />
+    <Property Name="state" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="11" Nullable="false" />
+    <Property Name="orderFname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="orderLname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="orderPhoneNum" Type="nchar" MaxLength="11" Nullable="false" />
+    <Property Name="transID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="transStatus" Type="bit" Nullable="false" />
+    <Property Name="fkOrderStatus_id" Type="int" Nullable="false" />
+    <Property Name="TrackingCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_product_attribute">
+    <Key>
+      <PropertyRef Name="pkID" />
+    </Key>
+    <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FKproduct_ID" Type="int" Nullable="false" />
+    <Property Name="FKattribute_ID" Type="int" Nullable="false" />
+    <Property Name="FKvalue_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_products">
+    <Key>
+      <PropertyRef Name="pkID" />
+    </Key>
+    <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="sku" Type="int" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="price" Type="bigint" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+    <Property Name="createTime" Type="datetime" Nullable="false" />
+    <Property Name="HID" Type="nvarchar(max)" />
+    <Property Name="discount" Type="numeric" Precision="3" Scale="0" />
+  </EntityType>
+  <EntityType Name="tbl_users">
+    <Key>
+      <PropertyRef Name="pkID" />
+    </Key>
+    <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userHID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="userName" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="fName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="lName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="phoneNumber" Type="nchar" MaxLength="11" Nullable="false" />
+    <Property Name="email" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="userPass" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="state" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="city" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="registeryDate" Type="date" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view '13278_redShop2.13278_pejman.View_product_attribute' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_product_attribute">
+    <Key>
+      <PropertyRef Name="pkID" />
+      <PropertyRef Name="pName" />
+      <PropertyRef Name="sku" />
+      <PropertyRef Name="description" />
+      <PropertyRef Name="price" />
+      <PropertyRef Name="createTime" />
+      <PropertyRef Name="active" />
+      <PropertyRef Name="FKproduct_ID" />
+      <PropertyRef Name="FKattribute_ID" />
+      <PropertyRef Name="FKvalue_ID" />
+      <PropertyRef Name="attribute_name" />
+      <PropertyRef Name="value" />
+    </Key>
+    <Property Name="pkID" Type="int" Nullable="false" />
+    <Property Name="pName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="sku" Type="int" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="price" Type="bigint" Nullable="false" />
+    <Property Name="createTime" Type="datetime" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+    <Property Name="HID" Type="nvarchar(max)" />
+    <Property Name="FKproduct_ID" Type="int" Nullable="false" />
+    <Property Name="FKattribute_ID" Type="int" Nullable="false" />
+    <Property Name="FKvalue_ID" Type="int" Nullable="false" />
+    <Property Name="attribute_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="value" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view '13278_redShop2.dbo.View_comments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_comments">
+    <Key>
+      <PropertyRef Name="pkId" />
+      <PropertyRef Name="fkproductID" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="time" />
+      <PropertyRef Name="Score" />
+      <PropertyRef Name="Messages" />
+    </Key>
+    <Property Name="pkId" Type="int" Nullable="false" />
+    <Property Name="fkUserID" Type="int" />
+    <Property Name="fkproductID" Type="int" Nullable="false" />
+    <Property Name="status" Type="bit" Nullable="false" />
+    <Property Name="time" Type="datetime" Nullable="false" />
+    <Property Name="Score" Type="int" Nullable="false" />
+    <Property Name="Messages" Type="nvarchar" MaxLength="750" Nullable="false" />
+    <Property Name="userName" Type="nchar" MaxLength="20" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_tbl_attribute_values_tbl_attributes">
+    <End Role="tbl_attributes" Type="Self.tbl_attributes" Multiplicity="1" />
+    <End Role="tbl_attribute_values" Type="Self.tbl_attribute_values" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_attributes">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_attribute_values">
+        <PropertyRef Name="FKattribute_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_comments_tbl_products">
+    <End Role="tbl_products" Type="Self.tbl_products" Multiplicity="1" />
+    <End Role="tbl_comments" Type="Self.tbl_comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_products">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_comments">
+        <PropertyRef Name="fkproductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_comments_tbl_users">
+    <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+    <End Role="tbl_comments" Type="Self.tbl_comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_users">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_comments">
+        <PropertyRef Name="fkUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_images_tbl_products">
+    <End Role="tbl_products" Type="Self.tbl_products" Multiplicity="1" />
+    <End Role="tbl_images" Type="Self.tbl_images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_products">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_images">
+        <PropertyRef Name="FKproduct_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_invoice_tbl_products">
+    <End Role="tbl_products" Type="Self.tbl_products" Multiplicity="1" />
+    <End Role="tbl_invoice" Type="Self.tbl_invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_products">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_invoice">
+        <PropertyRef Name="fkProduct_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_invoice_tbl_users">
+    <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+    <End Role="tbl_invoice" Type="Self.tbl_invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_users">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_invoice">
+        <PropertyRef Name="fkUser_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_product_attribute_tbl_attribute_values">
+    <End Role="tbl_attribute_values" Type="Self.tbl_attribute_values" Multiplicity="1" />
+    <End Role="tbl_product_attribute" Type="Self.tbl_product_attribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_attribute_values">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_product_attribute">
+        <PropertyRef Name="FKvalue_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_product_attribute_tbl_attributes">
+    <End Role="tbl_attributes" Type="Self.tbl_attributes" Multiplicity="1" />
+    <End Role="tbl_product_attribute" Type="Self.tbl_product_attribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_attributes">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_product_attribute">
+        <PropertyRef Name="FKattribute_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_product_attribute_tbl_products">
+    <End Role="tbl_products" Type="Self.tbl_products" Multiplicity="1" />
+    <End Role="tbl_product_attribute" Type="Self.tbl_product_attribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_products">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_product_attribute">
+        <PropertyRef Name="FKproduct_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="redShop2ModelStoreContainer">
+    <EntitySet Name="tbl_attribute_values" EntityType="Self.tbl_attribute_values" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_attributes" EntityType="Self.tbl_attributes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_comments" EntityType="Self.tbl_comments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_images" EntityType="Self.tbl_images" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_invoice" EntityType="Self.tbl_invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_product_attribute" EntityType="Self.tbl_product_attribute" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_products" EntityType="Self.tbl_products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_users" EntityType="Self.tbl_users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_indexcontents" EntityType="Self.tbl_indexcontents" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbl_indexcontents].[pkID] AS [pkID], 
+    [tbl_indexcontents].[ContentsName] AS [ContentsName], 
+    [tbl_indexcontents].[ContentsValue] AS [ContentsValue], 
+    [tbl_indexcontents].[Description] AS [Description]
+    FROM [dbo].[tbl_indexcontents] AS [tbl_indexcontents]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_product_attribute" EntityType="Self.View_product_attribute" store:Type="Views" store:Schema="13278_pejman">
+      <DefiningQuery>SELECT 
+    [View_product_attribute].[pkID] AS [pkID], 
+    [View_product_attribute].[pName] AS [pName], 
+    [View_product_attribute].[sku] AS [sku], 
+    [View_product_attribute].[description] AS [description], 
+    [View_product_attribute].[price] AS [price], 
+    [View_product_attribute].[createTime] AS [createTime], 
+    [View_product_attribute].[active] AS [active], 
+    [View_product_attribute].[HID] AS [HID], 
+    [View_product_attribute].[FKproduct_ID] AS [FKproduct_ID], 
+    [View_product_attribute].[FKattribute_ID] AS [FKattribute_ID], 
+    [View_product_attribute].[FKvalue_ID] AS [FKvalue_ID], 
+    [View_product_attribute].[attribute_name] AS [attribute_name], 
+    [View_product_attribute].[value] AS [value]
+    FROM [13278_pejman].[View_product_attribute] AS [View_product_attribute]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_comments" EntityType="Self.View_comments" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_comments].[pkId] AS [pkId], 
+    [View_comments].[fkUserID] AS [fkUserID], 
+    [View_comments].[fkproductID] AS [fkproductID], 
+    [View_comments].[status] AS [status], 
+    [View_comments].[time] AS [time], 
+    [View_comments].[Score] AS [Score], 
+    [View_comments].[Messages] AS [Messages], 
+    [View_comments].[userName] AS [userName], 
+    [View_comments].[Name] AS [Name], 
+    [View_comments].[email] AS [email]
+    FROM [dbo].[View_comments] AS [View_comments]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_tbl_attribute_values_tbl_attributes" Association="Self.FK_tbl_attribute_values_tbl_attributes">
+      <End Role="tbl_attributes" EntitySet="tbl_attributes" />
+      <End Role="tbl_attribute_values" EntitySet="tbl_attribute_values" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_comments_tbl_products" Association="Self.FK_tbl_comments_tbl_products">
+      <End Role="tbl_products" EntitySet="tbl_products" />
+      <End Role="tbl_comments" EntitySet="tbl_comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_comments_tbl_users" Association="Self.FK_tbl_comments_tbl_users">
+      <End Role="tbl_users" EntitySet="tbl_users" />
+      <End Role="tbl_comments" EntitySet="tbl_comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_images_tbl_products" Association="Self.FK_tbl_images_tbl_products">
+      <End Role="tbl_products" EntitySet="tbl_products" />
+      <End Role="tbl_images" EntitySet="tbl_images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_invoice_tbl_products" Association="Self.FK_tbl_invoice_tbl_products">
+      <End Role="tbl_products" EntitySet="tbl_products" />
+      <End Role="tbl_invoice" EntitySet="tbl_invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_invoice_tbl_users" Association="Self.FK_tbl_invoice_tbl_users">
+      <End Role="tbl_users" EntitySet="tbl_users" />
+      <End Role="tbl_invoice" EntitySet="tbl_invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_product_attribute_tbl_attribute_values" Association="Self.FK_tbl_product_attribute_tbl_attribute_values">
+      <End Role="tbl_attribute_values" EntitySet="tbl_attribute_values" />
+      <End Role="tbl_product_attribute" EntitySet="tbl_product_attribute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_product_attribute_tbl_attributes" Association="Self.FK_tbl_product_attribute_tbl_attributes">
+      <End Role="tbl_attributes" EntitySet="tbl_attributes" />
+      <End Role="tbl_product_attribute" EntitySet="tbl_product_attribute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_product_attribute_tbl_products" Association="Self.FK_tbl_product_attribute_tbl_products">
+      <End Role="tbl_products" EntitySet="tbl_products" />
+      <End Role="tbl_product_attribute" EntitySet="tbl_product_attribute" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,195 @@
+﻿
+@{
+    ViewBag.Title = "checkout";
+    Layout = "~/Views/Sheared/_blank.cshtml";
+}
+
+@Html.AntiForgeryToken();
+<div class="col-md-7">
+    <!-- Billing Details -->
+    <div class="billing-details">
+        <div class="section-title">
+            <h3 class="title">Billing address</h3>
+        </div>
+        <div class="form-group">
+            <input id="cfname" class="input" type="text" name="first-name" placeholder="First Name">
+            <p id="fnt"></p>
+
+        </div>
+        <div class="form-group">
+            <input id="clname" class="input" type="text" name="last-name" placeholder="Last Name">
+            <p id="lnt"></p>
+
+        </div>
+        <div class="form-group">
+            <input id="cpn" class="input" type="text" name="phone " placeholder="phi=one number">
+            <p id="pnt"></p>
+
+        </div>
+        <div class="form-group">
+            <input id="email" class="input" type="email" name="email " placeholder="Email">
+            <p id="em"></p>
+
+        </div>
+        <div class="form-group">
+            <input id="uname" class="input" type="text" name="username " placeholder="user name">
+            <p id="unt"></p>
+
+        </div>
+        <div class="form-group">
+            <input id="cad" class="input" type="text" name="address" placeholder="Address">
+            <p id="adt"></p>
+
+        </div>
+        <div class="form-group">
+            <input id="cct" class="input" type="text" name="city" placeholder="City">
+            <p id="ctt"></p>
+
+        </div>
+        <div class="form-group">
+            <input id="cst" class="input" type="text" name="state" placeholder="state">
+            <p id="stt"></p>
+
+        </div>
+        <div class="form-group">
+            <input id="cpc" class="input" type="text" name="postal-code" placeholder="postal Code">
+            <p id="pct"></p>
+
+        </div>
+        <div class="form-group">
+            <input class="input" type="tel" name="tel" placeholder="Telephone">
+        </div>
+        <div class="form-group">
+            <div class="input-checkbox">
+                <input type="checkbox" id="create-account">
+                <label for="create-account">
+                    <span></span>
+                    Create Account?
+                </label>
+                <div class="caption">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                    <input id="pass" class="input" type="password" name="password" placeholder="Enter Your Password">
+                    <p id="pst"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Billing Details -->
+    <!-- Shiping Details -->
+    <div class="shiping-details">
+        <div class="section-title">
+            <h3 class="title">Shiping address</h3>
+        </div>
+        <div class="input-checkbox">
+            <input type="checkbox" id="shiping-address">
+            <label for="shiping-address">
+                <span></span>
+                Ship to a diffrent address?
+            </label>
+            <div class="caption">
+                <div class="form-group">
+                    <input id="otherfn" class="input" type="text" name="first-name" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <input id="otherln" class="input" type="text" name="last-name" placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                    <input id="otherpn" class="input" type="text" name="phone" placeholder="phone number">
+                </div>
+                <div class="form-group">
+                    <input id="otherst" class="input" type="text" name="state" placeholder="state">
+                </div>
+                <div class="form-group">
+                    <input id="otherct" class="input" type="text" name="city" placeholder="city">
+                </div>
+                <div class="form-group">
+                    <input id="otherad" class="input" type="text" name="address" placeholder="Address">
+                </div>
+                <div class="form-group">
+                    <input id="otherpc" class="input" type="text" name="postal-code" placeholder="postal Code">
+                </div>
+                <div class="form-group">
+                    <input class="input" type="tel" name="tel" placeholder="Telephone">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Shiping Details -->
+    <!-- Order notes -->
+    @*<div class="order-notes">
+            <textarea class="input" placeholder="Order Notes"></textarea>
+        </div>*@
+    <!-- /Order notes -->
+</div>
+
+<!-- Order Details -->
+<div class="col-md-5 order-details">
+    <div class="section-title text-center">
+        <h3 class="title">Your Order</h3>
+    </div>
+    <div class="order-summary">
+        <div class="order-col">
+            <div><strong>PRODUCT</strong></div>
+            <div><strong>TOTAL</strong></div>
+        </div>
+        <div class="order-products">
+
+        </div>
+        <div class="order-col">
+            <div>Shiping</div>
+            <div><strong>FREE</strong></div>
+        </div>
+        <div class="order-col">
+            <div><strong>TOTAL</strong></div>
+            <div><strong class="order-total">00.00</strong></div>
+        </div>
+    </div>
+    <div class="payment-method">
+        <div class="input-radio">
+            <input type="radio" name="payment" id="payment-1">
+            <label for="payment-1">
+                <span></span>
+                Direct Bank Transfer
+            </label>
+            <div class="caption">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </div>
+        <div class="input-radio">
+            <input type="radio" name="payment" id="payment-2">
+            <label for="payment-2">
+                <span></span>
+                Cheque Payment
+            </label>
+            <div class="caption">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </div>
+        <div class="input-radio">
+            <input type="radio" name="payment" id="payment-3">
+            <label for="payment-3">
+                <span></span>
+                Paypal System
+            </label>
+            <div class="caption">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </div>
+    </div>
+    <div class="input-checkbox">
+        <input type="checkbox" id="terms">
+        <label for="terms">
+            <span></span>
+            I've read and accept the <a href="#">terms & conditions</a>
+        </label>
+    </div>
+    <a href="#" class="primary-btn order-submit">Place order</a>
+</div>
+<!-- /Order Details -->
+
+
+
+
+@section scripts{
+    <script src="~/assets/js/checkout.js"></script>
+}

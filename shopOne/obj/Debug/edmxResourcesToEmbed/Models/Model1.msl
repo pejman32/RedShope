@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="redShop2ModelStoreContainer" CdmEntityContainer="redshopDB">
+    <EntitySetMapping Name="tbl_attribute_values">
+      <EntityTypeMapping TypeName="redShop2Model.tbl_attribute_values">
+        <MappingFragment StoreEntitySet="tbl_attribute_values">
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="FKattribute_ID" ColumnName="FKattribute_ID" />
+          <ScalarProperty Name="pkID" ColumnName="pkID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_attributes">
+      <EntityTypeMapping TypeName="redShop2Model.tbl_attributes">
+        <MappingFragment StoreEntitySet="tbl_attributes">
+          <ScalarProperty Name="attribute_name" ColumnName="attribute_name" />
+          <ScalarProperty Name="pkID" ColumnName="pkID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_images">
+      <EntityTypeMapping TypeName="redShop2Model.tbl_images">
+        <MappingFragment StoreEntitySet="tbl_images">
+          <ScalarProperty Name="photo_6" ColumnName="photo_6" />
+          <ScalarProperty Name="photo_5" ColumnName="photo_5" />
+          <ScalarProperty Name="photo_4" ColumnName="photo_4" />
+          <ScalarProperty Name="photo_3" ColumnName="photo_3" />
+          <ScalarProperty Name="photo_2" ColumnName="photo_2" />
+          <ScalarProperty Name="photo_1" ColumnName="photo_1" />
+          <ScalarProperty Name="smallphoto" ColumnName="smallphoto" />
+          <ScalarProperty Name="banerphoto" ColumnName="banerphoto" />
+          <ScalarProperty Name="FKproduct_ID" ColumnName="FKproduct_ID" />
+          <ScalarProperty Name="pkId" ColumnName="pkId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_invoice">
+      <EntityTypeMapping TypeName="redShop2Model.tbl_invoice">
+        <MappingFragment StoreEntitySet="tbl_invoice">
+          <ScalarProperty Name="Registered" ColumnName="Registered" />
+          <ScalarProperty Name="TrackingCode" ColumnName="TrackingCode" />
+          <ScalarProperty Name="fkOrderStatus_id" ColumnName="fkOrderStatus_id" />
+          <ScalarProperty Name="transStatus" ColumnName="transStatus" />
+          <ScalarProperty Name="transID" ColumnName="transID" />
+          <ScalarProperty Name="orderPhoneNum" ColumnName="orderPhoneNum" />
+          <ScalarProperty Name="orderLname" ColumnName="orderLname" />
+          <ScalarProperty Name="orderFname" ColumnName="orderFname" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="fkUser_id" ColumnName="fkUser_id" />
+          <ScalarProperty Name="productPrice" ColumnName="productPrice" />
+          <ScalarProperty Name="fkProduct_id" ColumnName="fkProduct_id" />
+          <ScalarProperty Name="invoice_num" ColumnName="invoice_num" />
+          <ScalarProperty Name="pkID" ColumnName="pkID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_product_attribute">
+      <EntityTypeMapping TypeName="redShop2Model.tbl_product_attribute">
+        <MappingFragment StoreEntitySet="tbl_product_attribute">
+          <ScalarProperty Name="FKvalue_ID" ColumnName="FKvalue_ID" />
+          <ScalarProperty Name="FKattribute_ID" ColumnName="FKattribute_ID" />
+          <ScalarProperty Name="FKproduct_ID" ColumnName="FKproduct_ID" />
+          <ScalarProperty Name="pkID" ColumnName="pkID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_products">
+      <EntityTypeMapping TypeName="redShop2Model.tbl_products">
+        <MappingFragment StoreEntitySet="tbl_products">
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="HID" ColumnName="HID" />
+          <ScalarProperty Name="createTime" ColumnName="createTime" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="sku" ColumnName="sku" />
+          <ScalarProperty Name="pName" ColumnName="pName" />
+          <ScalarProperty Name="pkID" ColumnName="pkID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_users">
+      <EntityTypeMapping TypeName="redShop2Model.tbl_users">
+        <MappingFragment StoreEntitySet="tbl_users">
+          <ScalarProperty Name="registeryDate" ColumnName="registeryDate" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="userPass" ColumnName="userPass" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+          <ScalarProperty Name="lName" ColumnName="lName" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userHID" ColumnName="userHID" />
+          <ScalarProperty Name="pkID" ColumnName="pkID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_indexcontents">
+      <EntityTypeMapping TypeName="redShop2Model.tbl_indexcontents">
+        <MappingFragment StoreEntitySet="tbl_indexcontents">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ContentsValue" ColumnName="ContentsValue" />
+          <ScalarProperty Name="ContentsName" ColumnName="ContentsName" />
+          <ScalarProperty Name="pkID" ColumnName="pkID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_comments">
+      <EntityTypeMapping TypeName="redShop2Model.View_comments">
+        <MappingFragment StoreEntitySet="View_comments">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="Messages" ColumnName="Messages" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="fkproductID" ColumnName="fkproductID" />
+          <ScalarProperty Name="fkUserID" ColumnName="fkUserID" />
+          <ScalarProperty Name="pkId" ColumnName="pkId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_product_attribute">
+      <EntityTypeMapping TypeName="redShop2Model.View_product_attribute">
+        <MappingFragment StoreEntitySet="View_product_attribute">
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="attribute_name" ColumnName="attribute_name" />
+          <ScalarProperty Name="FKvalue_ID" ColumnName="FKvalue_ID" />
+          <ScalarProperty Name="FKattribute_ID" ColumnName="FKattribute_ID" />
+          <ScalarProperty Name="FKproduct_ID" ColumnName="FKproduct_ID" />
+          <ScalarProperty Name="HID" ColumnName="HID" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="createTime" ColumnName="createTime" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="sku" ColumnName="sku" />
+          <ScalarProperty Name="pName" ColumnName="pName" />
+          <ScalarProperty Name="pkID" ColumnName="pkID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_comments">
+      <EntityTypeMapping TypeName="redShop2Model.tbl_comments">
+        <MappingFragment StoreEntitySet="tbl_comments">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Messages" ColumnName="Messages" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="fkproductID" ColumnName="fkproductID" />
+          <ScalarProperty Name="fkUserID" ColumnName="fkUserID" />
+          <ScalarProperty Name="pkId" ColumnName="pkId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_pictures">
+      <EntityTypeMapping TypeName="redShop2Model.tbl_pictures">
+        <MappingFragment StoreEntitySet="tbl_pictures">
+          <ScalarProperty Name="MainPic" ColumnName="MainPic" />
+          <ScalarProperty Name="PicSrc" ColumnName="PicSrc" />
+          <ScalarProperty Name="FKproductID" ColumnName="FKproductID" />
+          <ScalarProperty Name="pkID" ColumnName="pkID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

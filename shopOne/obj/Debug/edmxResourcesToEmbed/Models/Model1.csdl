@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="redShop2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="redshopDB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_attribute_values" EntityType="redShop2Model.tbl_attribute_values" />
+    <EntitySet Name="tbl_attributes" EntityType="redShop2Model.tbl_attributes" />
+    <EntitySet Name="tbl_images" EntityType="redShop2Model.tbl_images" />
+    <EntitySet Name="tbl_invoice" EntityType="redShop2Model.tbl_invoice" />
+    <EntitySet Name="tbl_product_attribute" EntityType="redShop2Model.tbl_product_attribute" />
+    <EntitySet Name="tbl_products" EntityType="redShop2Model.tbl_products" />
+    <EntitySet Name="tbl_users" EntityType="redShop2Model.tbl_users" />
+    <EntitySet Name="tbl_indexcontents" EntityType="redShop2Model.tbl_indexcontents" />
+    <AssociationSet Name="FK_tbl_attribute_values_tbl_attributes" Association="redShop2Model.FK_tbl_attribute_values_tbl_attributes">
+      <End Role="tbl_attributes" EntitySet="tbl_attributes" />
+      <End Role="tbl_attribute_values" EntitySet="tbl_attribute_values" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_product_attribute_tbl_attribute_values" Association="redShop2Model.FK_tbl_product_attribute_tbl_attribute_values">
+      <End Role="tbl_attribute_values" EntitySet="tbl_attribute_values" />
+      <End Role="tbl_product_attribute" EntitySet="tbl_product_attribute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_product_attribute_tbl_attributes" Association="redShop2Model.FK_tbl_product_attribute_tbl_attributes">
+      <End Role="tbl_attributes" EntitySet="tbl_attributes" />
+      <End Role="tbl_product_attribute" EntitySet="tbl_product_attribute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_images_tbl_products" Association="redShop2Model.FK_tbl_images_tbl_products">
+      <End Role="tbl_products" EntitySet="tbl_products" />
+      <End Role="tbl_images" EntitySet="tbl_images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_invoice_tbl_products" Association="redShop2Model.FK_tbl_invoice_tbl_products">
+      <End Role="tbl_products" EntitySet="tbl_products" />
+      <End Role="tbl_invoice" EntitySet="tbl_invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_invoice_tbl_users" Association="redShop2Model.FK_tbl_invoice_tbl_users">
+      <End Role="tbl_users" EntitySet="tbl_users" />
+      <End Role="tbl_invoice" EntitySet="tbl_invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_product_attribute_tbl_products" Association="redShop2Model.FK_tbl_product_attribute_tbl_products">
+      <End Role="tbl_products" EntitySet="tbl_products" />
+      <End Role="tbl_product_attribute" EntitySet="tbl_product_attribute" />
+    </AssociationSet>
+    <EntitySet Name="View_comments" EntityType="redShop2Model.View_comments" />
+    <EntitySet Name="View_product_attribute" EntityType="redShop2Model.View_product_attribute" />
+    <EntitySet Name="tbl_comments" EntityType="redShop2Model.tbl_comments" />
+    <AssociationSet Name="FK_tbl_comments_tbl_products" Association="redShop2Model.FK_tbl_comments_tbl_products">
+      <End Role="tbl_products" EntitySet="tbl_products" />
+      <End Role="tbl_comments" EntitySet="tbl_comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_comments_tbl_users" Association="redShop2Model.FK_tbl_comments_tbl_users">
+      <End Role="tbl_users" EntitySet="tbl_users" />
+      <End Role="tbl_comments" EntitySet="tbl_comments" />
+    </AssociationSet>
+    <EntitySet Name="tbl_pictures" EntityType="redShop2Model.tbl_pictures" />
+    <AssociationSet Name="FK_tbl_pictures_tbl_products" Association="redShop2Model.FK_tbl_pictures_tbl_products">
+      <End Role="tbl_products" EntitySet="tbl_products" />
+      <End Role="tbl_pictures" EntitySet="tbl_pictures" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tbl_attribute_values">
+    <Key>
+      <PropertyRef Name="pkID" />
+    </Key>
+    <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FKattribute_ID" Type="Int32" Nullable="false" />
+    <Property Name="value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_attributes" Relationship="redShop2Model.FK_tbl_attribute_values_tbl_attributes" FromRole="tbl_attribute_values" ToRole="tbl_attributes" />
+    <NavigationProperty Name="tbl_product_attribute" Relationship="redShop2Model.FK_tbl_product_attribute_tbl_attribute_values" FromRole="tbl_attribute_values" ToRole="tbl_product_attribute" />
+  </EntityType>
+  <EntityType Name="tbl_attributes">
+    <Key>
+      <PropertyRef Name="pkID" />
+    </Key>
+    <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="attribute_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_attribute_values" Relationship="redShop2Model.FK_tbl_attribute_values_tbl_attributes" FromRole="tbl_attributes" ToRole="tbl_attribute_values" />
+    <NavigationProperty Name="tbl_product_attribute" Relationship="redShop2Model.FK_tbl_product_attribute_tbl_attributes" FromRole="tbl_attributes" ToRole="tbl_product_attribute" />
+  </EntityType>
+  <EntityType Name="tbl_images">
+    <Key>
+      <PropertyRef Name="pkId" />
+    </Key>
+    <Property Name="pkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FKproduct_ID" Type="Int32" Nullable="false" />
+    <Property Name="banerphoto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="smallphoto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="photo_1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="photo_2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="photo_3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="photo_4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="photo_5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="photo_6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_products" Relationship="redShop2Model.FK_tbl_images_tbl_products" FromRole="tbl_images" ToRole="tbl_products" />
+  </EntityType>
+  <EntityType Name="tbl_invoice">
+    <Key>
+      <PropertyRef Name="pkID" />
+    </Key>
+    <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="invoice_num" Type="Int64" Nullable="false" />
+    <Property Name="fkProduct_id" Type="Int32" Nullable="false" />
+    <Property Name="productPrice" Type="Int64" Nullable="false" />
+    <Property Name="fkUser_id" Type="Int32" />
+    <Property Name="state" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="orderFname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="orderLname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="orderPhoneNum" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="transID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="transStatus" Type="Boolean" Nullable="false" />
+    <Property Name="fkOrderStatus_id" Type="Int32" Nullable="false" />
+    <Property Name="TrackingCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_products" Relationship="redShop2Model.FK_tbl_invoice_tbl_products" FromRole="tbl_invoice" ToRole="tbl_products" />
+    <NavigationProperty Name="tbl_users" Relationship="redShop2Model.FK_tbl_invoice_tbl_users" FromRole="tbl_invoice" ToRole="tbl_users" />
+    <Property Name="Registered" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_product_attribute">
+    <Key>
+      <PropertyRef Name="pkID" />
+    </Key>
+    <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FKproduct_ID" Type="Int32" Nullable="false" />
+    <Property Name="FKattribute_ID" Type="Int32" Nullable="false" />
+    <Property Name="FKvalue_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_attribute_values" Relationship="redShop2Model.FK_tbl_product_attribute_tbl_attribute_values" FromRole="tbl_product_attribute" ToRole="tbl_attribute_values" />
+    <NavigationProperty Name="tbl_attributes" Relationship="redShop2Model.FK_tbl_product_attribute_tbl_attributes" FromRole="tbl_product_attribute" ToRole="tbl_attributes" />
+    <NavigationProperty Name="tbl_products" Relationship="redShop2Model.FK_tbl_product_attribute_tbl_products" FromRole="tbl_product_attribute" ToRole="tbl_products" />
+  </EntityType>
+  <EntityType Name="tbl_products">
+    <Key>
+      <PropertyRef Name="pkID" />
+    </Key>
+    <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sku" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Int64" Nullable="false" />
+    <Property Name="active" Type="Boolean" Nullable="false" />
+    <Property Name="createTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="HID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="discount" Type="Decimal" Precision="3" Scale="0" />
+    <NavigationProperty Name="tbl_images" Relationship="redShop2Model.FK_tbl_images_tbl_products" FromRole="tbl_products" ToRole="tbl_images" />
+    <NavigationProperty Name="tbl_invoice" Relationship="redShop2Model.FK_tbl_invoice_tbl_products" FromRole="tbl_products" ToRole="tbl_invoice" />
+    <NavigationProperty Name="tbl_product_attribute" Relationship="redShop2Model.FK_tbl_product_attribute_tbl_products" FromRole="tbl_products" ToRole="tbl_product_attribute" />
+    <NavigationProperty Name="tbl_comments" Relationship="redShop2Model.FK_tbl_comments_tbl_products" FromRole="tbl_products" ToRole="tbl_comments" />
+    <NavigationProperty Name="tbl_pictures" Relationship="redShop2Model.FK_tbl_pictures_tbl_products" FromRole="tbl_products" ToRole="tbl_pictures" />
+  </EntityType>
+  <EntityType Name="tbl_users">
+    <Key>
+      <PropertyRef Name="pkID" />
+    </Key>
+    <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userHID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="userName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="fName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="lName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="userPass" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="state" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="registeryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="tbl_invoice" Relationship="redShop2Model.FK_tbl_invoice_tbl_users" FromRole="tbl_users" ToRole="tbl_invoice" />
+    <NavigationProperty Name="tbl_comments" Relationship="redShop2Model.FK_tbl_comments_tbl_users" FromRole="tbl_users" ToRole="tbl_comments" />
+  </EntityType>
+  <EntityType Name="tbl_indexcontents">
+    <Key>
+      <PropertyRef Name="pkID" />
+      <PropertyRef Name="ContentsName" />
+      <PropertyRef Name="ContentsValue" />
+      <PropertyRef Name="Description" />
+    </Key>
+    <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContentsName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContentsValue" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_tbl_attribute_values_tbl_attributes">
+    <End Type="redShop2Model.tbl_attributes" Role="tbl_attributes" Multiplicity="1" />
+    <End Type="redShop2Model.tbl_attribute_values" Role="tbl_attribute_values" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_attributes">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_attribute_values">
+        <PropertyRef Name="FKattribute_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_product_attribute_tbl_attribute_values">
+    <End Type="redShop2Model.tbl_attribute_values" Role="tbl_attribute_values" Multiplicity="1" />
+    <End Type="redShop2Model.tbl_product_attribute" Role="tbl_product_attribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_attribute_values">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_product_attribute">
+        <PropertyRef Name="FKvalue_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_product_attribute_tbl_attributes">
+    <End Type="redShop2Model.tbl_attributes" Role="tbl_attributes" Multiplicity="1" />
+    <End Type="redShop2Model.tbl_product_attribute" Role="tbl_product_attribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_attributes">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_product_attribute">
+        <PropertyRef Name="FKattribute_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_images_tbl_products">
+    <End Type="redShop2Model.tbl_products" Role="tbl_products" Multiplicity="1" />
+    <End Type="redShop2Model.tbl_images" Role="tbl_images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_products">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_images">
+        <PropertyRef Name="FKproduct_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_invoice_tbl_products">
+    <End Type="redShop2Model.tbl_products" Role="tbl_products" Multiplicity="1" />
+    <End Type="redShop2Model.tbl_invoice" Role="tbl_invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_products">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_invoice">
+        <PropertyRef Name="fkProduct_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_invoice_tbl_users">
+    <End Type="redShop2Model.tbl_users" Role="tbl_users" Multiplicity="0..1" />
+    <End Type="redShop2Model.tbl_invoice" Role="tbl_invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_users">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_invoice">
+        <PropertyRef Name="fkUser_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_product_attribute_tbl_products">
+    <End Type="redShop2Model.tbl_products" Role="tbl_products" Multiplicity="1" />
+    <End Type="redShop2Model.tbl_product_attribute" Role="tbl_product_attribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_products">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_product_attribute">
+        <PropertyRef Name="FKproduct_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="View_comments">
+    <Key>
+      <PropertyRef Name="pkId" />
+      <PropertyRef Name="fkproductID" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="time" />
+      <PropertyRef Name="Score" />
+      <PropertyRef Name="Messages" />
+    </Key>
+    <Property Name="pkId" Type="Int32" Nullable="false" />
+    <Property Name="fkUserID" Type="Int32" />
+    <Property Name="fkproductID" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Score" Type="Int32" Nullable="false" />
+    <Property Name="Messages" Type="String" Nullable="false" MaxLength="750" FixedLength="false" Unicode="true" />
+    <Property Name="userName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="View_product_attribute">
+    <Key>
+      <PropertyRef Name="pkID" />
+      <PropertyRef Name="pName" />
+      <PropertyRef Name="sku" />
+      <PropertyRef Name="description" />
+      <PropertyRef Name="price" />
+      <PropertyRef Name="createTime" />
+      <PropertyRef Name="active" />
+      <PropertyRef Name="FKproduct_ID" />
+      <PropertyRef Name="FKattribute_ID" />
+      <PropertyRef Name="FKvalue_ID" />
+      <PropertyRef Name="attribute_name" />
+      <PropertyRef Name="value" />
+    </Key>
+    <Property Name="pkID" Type="Int32" Nullable="false" />
+    <Property Name="pName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sku" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Int64" Nullable="false" />
+    <Property Name="createTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="active" Type="Boolean" Nullable="false" />
+    <Property Name="HID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FKproduct_ID" Type="Int32" Nullable="false" />
+    <Property Name="FKattribute_ID" Type="Int32" Nullable="false" />
+    <Property Name="FKvalue_ID" Type="Int32" Nullable="false" />
+    <Property Name="attribute_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="discount" Type="Decimal" Precision="3" Scale="0" />
+  </EntityType>
+  <EntityType Name="tbl_comments">
+    <Key>
+      <PropertyRef Name="pkId" />
+    </Key>
+    <Property Name="pkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fkUserID" Type="Int32" />
+    <Property Name="fkproductID" Type="Int32" Nullable="false" />
+    <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <Property Name="Score" Type="Int32" Nullable="false" />
+    <Property Name="Messages" Type="String" Nullable="false" MaxLength="750" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbl_products" Relationship="redShop2Model.FK_tbl_comments_tbl_products" FromRole="tbl_comments" ToRole="tbl_products" />
+    <NavigationProperty Name="tbl_users" Relationship="redShop2Model.FK_tbl_comments_tbl_users" FromRole="tbl_comments" ToRole="tbl_users" />
+  </EntityType>
+  <Association Name="FK_tbl_comments_tbl_products">
+    <End Type="redShop2Model.tbl_products" Role="tbl_products" Multiplicity="1" />
+    <End Type="redShop2Model.tbl_comments" Role="tbl_comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_products">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_comments">
+        <PropertyRef Name="fkproductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_comments_tbl_users">
+    <End Type="redShop2Model.tbl_users" Role="tbl_users" Multiplicity="0..1" />
+    <End Type="redShop2Model.tbl_comments" Role="tbl_comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_users">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_comments">
+        <PropertyRef Name="fkUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tbl_pictures">
+    <Key>
+      <PropertyRef Name="pkID" />
+    </Key>
+    <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FKproductID" Type="Int32" Nullable="false" />
+    <Property Name="PicSrc" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="MainPic" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbl_products" Relationship="redShop2Model.FK_tbl_pictures_tbl_products" FromRole="tbl_pictures" ToRole="tbl_products" />
+  </EntityType>
+  <Association Name="FK_tbl_pictures_tbl_products">
+    <End Type="redShop2Model.tbl_products" Role="tbl_products" Multiplicity="1" />
+    <End Type="redShop2Model.tbl_pictures" Role="tbl_pictures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_products">
+        <PropertyRef Name="pkID" />
+      </Principal>
+      <Dependent Role="tbl_pictures">
+        <PropertyRef Name="FKproductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

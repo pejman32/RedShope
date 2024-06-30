@@ -1,0 +1,979 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="redShop2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_attribute_values">
+          <Key>
+            <PropertyRef Name="pkID" />
+          </Key>
+          <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FKattribute_ID" Type="int" Nullable="false" />
+          <Property Name="value" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_attributes">
+          <Key>
+            <PropertyRef Name="pkID" />
+          </Key>
+          <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="attribute_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_comments">
+          <Key>
+            <PropertyRef Name="pkId" />
+          </Key>
+          <Property Name="pkId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fkUserID" Type="int" />
+          <Property Name="fkproductID" Type="int" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="status" Type="bit" Nullable="false" />
+          <Property Name="Score" Type="int" Nullable="false" />
+          <Property Name="Messages" Type="nvarchar" MaxLength="750" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_images">
+          <Key>
+            <PropertyRef Name="pkId" />
+          </Key>
+          <Property Name="pkId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FKproduct_ID" Type="int" Nullable="false" />
+          <Property Name="banerphoto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="smallphoto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="photo_1" Type="nvarchar" MaxLength="50" />
+          <Property Name="photo_2" Type="nvarchar" MaxLength="50" />
+          <Property Name="photo_3" Type="nvarchar" MaxLength="50" />
+          <Property Name="photo_4" Type="nvarchar" MaxLength="50" />
+          <Property Name="photo_5" Type="nvarchar" MaxLength="50" />
+          <Property Name="photo_6" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view '13278_redShop2.dbo.tbl_indexcontents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_indexcontents">
+          <Key>
+            <PropertyRef Name="pkID" />
+            <PropertyRef Name="ContentsName" />
+            <PropertyRef Name="ContentsValue" />
+            <PropertyRef Name="Description" />
+          </Key>
+          <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContentsName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContentsValue" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_invoice">
+          <Key>
+            <PropertyRef Name="pkID" />
+          </Key>
+          <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="invoice_num" Type="bigint" Nullable="false" />
+          <Property Name="fkProduct_id" Type="int" Nullable="false" />
+          <Property Name="productPrice" Type="bigint" Nullable="false" />
+          <Property Name="fkUser_id" Type="int" />
+          <Property Name="state" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="orderFname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="orderLname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="orderPhoneNum" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="transID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="transStatus" Type="bit" Nullable="false" />
+          <Property Name="fkOrderStatus_id" Type="int" Nullable="false" />
+          <Property Name="TrackingCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Registered" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_pictures">
+          <Key>
+            <PropertyRef Name="pkID" />
+          </Key>
+          <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FKproductID" Type="int" Nullable="false" />
+          <Property Name="PicSrc" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="MainPic" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_product_attribute">
+          <Key>
+            <PropertyRef Name="pkID" />
+          </Key>
+          <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FKproduct_ID" Type="int" Nullable="false" />
+          <Property Name="FKattribute_ID" Type="int" Nullable="false" />
+          <Property Name="FKvalue_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_products">
+          <Key>
+            <PropertyRef Name="pkID" />
+          </Key>
+          <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sku" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="price" Type="bigint" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="createTime" Type="datetime" Nullable="false" />
+          <Property Name="HID" Type="nvarchar(max)" />
+          <Property Name="discount" Type="numeric" Precision="3" Scale="0" />
+        </EntityType>
+        <EntityType Name="tbl_users">
+          <Key>
+            <PropertyRef Name="pkID" />
+          </Key>
+          <Property Name="pkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userHID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="userName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="lName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="phoneNumber" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="userPass" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="state" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="registeryDate" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view '13278_redShop2.dbo.View_comments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_comments">
+          <Key>
+            <PropertyRef Name="pkId" />
+            <PropertyRef Name="fkproductID" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="time" />
+            <PropertyRef Name="Score" />
+            <PropertyRef Name="Messages" />
+          </Key>
+          <Property Name="pkId" Type="int" Nullable="false" />
+          <Property Name="fkUserID" Type="int" />
+          <Property Name="fkproductID" Type="int" Nullable="false" />
+          <Property Name="status" Type="bit" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="Score" Type="int" Nullable="false" />
+          <Property Name="Messages" Type="nvarchar" MaxLength="750" Nullable="false" />
+          <Property Name="userName" Type="nchar" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view '13278_redShop2.dbo.View_product_attribute' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_product_attribute">
+          <Key>
+            <PropertyRef Name="pkID" />
+            <PropertyRef Name="pName" />
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="description" />
+            <PropertyRef Name="price" />
+            <PropertyRef Name="createTime" />
+            <PropertyRef Name="active" />
+            <PropertyRef Name="FKproduct_ID" />
+            <PropertyRef Name="FKattribute_ID" />
+            <PropertyRef Name="FKvalue_ID" />
+            <PropertyRef Name="attribute_name" />
+            <PropertyRef Name="value" />
+          </Key>
+          <Property Name="pkID" Type="int" Nullable="false" />
+          <Property Name="pName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sku" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="price" Type="bigint" Nullable="false" />
+          <Property Name="createTime" Type="datetime" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="HID" Type="nvarchar(max)" />
+          <Property Name="FKproduct_ID" Type="int" Nullable="false" />
+          <Property Name="FKattribute_ID" Type="int" Nullable="false" />
+          <Property Name="FKvalue_ID" Type="int" Nullable="false" />
+          <Property Name="attribute_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="value" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="discount" Type="numeric" Precision="3" Scale="0" />
+        </EntityType>
+        <Association Name="FK_tbl_attribute_values_tbl_attributes">
+          <End Role="tbl_attributes" Type="Self.tbl_attributes" Multiplicity="1" />
+          <End Role="tbl_attribute_values" Type="Self.tbl_attribute_values" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_attributes">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_attribute_values">
+              <PropertyRef Name="FKattribute_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_comments_tbl_products">
+          <End Role="tbl_products" Type="Self.tbl_products" Multiplicity="1" />
+          <End Role="tbl_comments" Type="Self.tbl_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_products">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_comments">
+              <PropertyRef Name="fkproductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_comments_tbl_users">
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_comments" Type="Self.tbl_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_comments">
+              <PropertyRef Name="fkUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_images_tbl_products">
+          <End Role="tbl_products" Type="Self.tbl_products" Multiplicity="1" />
+          <End Role="tbl_images" Type="Self.tbl_images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_products">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_images">
+              <PropertyRef Name="FKproduct_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_invoice_tbl_products">
+          <End Role="tbl_products" Type="Self.tbl_products" Multiplicity="1" />
+          <End Role="tbl_invoice" Type="Self.tbl_invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_products">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_invoice">
+              <PropertyRef Name="fkProduct_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_invoice_tbl_users">
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="0..1" />
+          <End Role="tbl_invoice" Type="Self.tbl_invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_invoice">
+              <PropertyRef Name="fkUser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_pictures_tbl_products">
+          <End Role="tbl_products" Type="Self.tbl_products" Multiplicity="1" />
+          <End Role="tbl_pictures" Type="Self.tbl_pictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_products">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_pictures">
+              <PropertyRef Name="FKproductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_product_attribute_tbl_attribute_values">
+          <End Role="tbl_attribute_values" Type="Self.tbl_attribute_values" Multiplicity="1" />
+          <End Role="tbl_product_attribute" Type="Self.tbl_product_attribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_attribute_values">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_product_attribute">
+              <PropertyRef Name="FKvalue_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_product_attribute_tbl_attributes">
+          <End Role="tbl_attributes" Type="Self.tbl_attributes" Multiplicity="1" />
+          <End Role="tbl_product_attribute" Type="Self.tbl_product_attribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_attributes">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_product_attribute">
+              <PropertyRef Name="FKattribute_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_product_attribute_tbl_products">
+          <End Role="tbl_products" Type="Self.tbl_products" Multiplicity="1" />
+          <End Role="tbl_product_attribute" Type="Self.tbl_product_attribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_products">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_product_attribute">
+              <PropertyRef Name="FKproduct_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="redShop2ModelStoreContainer">
+          <EntitySet Name="tbl_attribute_values" EntityType="Self.tbl_attribute_values" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_attributes" EntityType="Self.tbl_attributes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_comments" EntityType="Self.tbl_comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_images" EntityType="Self.tbl_images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_invoice" EntityType="Self.tbl_invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_pictures" EntityType="Self.tbl_pictures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_product_attribute" EntityType="Self.tbl_product_attribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_products" EntityType="Self.tbl_products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_users" EntityType="Self.tbl_users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_indexcontents" EntityType="Self.tbl_indexcontents" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_indexcontents].[pkID] AS [pkID], 
+    [tbl_indexcontents].[ContentsName] AS [ContentsName], 
+    [tbl_indexcontents].[ContentsValue] AS [ContentsValue], 
+    [tbl_indexcontents].[Description] AS [Description]
+    FROM [dbo].[tbl_indexcontents] AS [tbl_indexcontents]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_comments" EntityType="Self.View_comments" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_comments].[pkId] AS [pkId], 
+    [View_comments].[fkUserID] AS [fkUserID], 
+    [View_comments].[fkproductID] AS [fkproductID], 
+    [View_comments].[status] AS [status], 
+    [View_comments].[time] AS [time], 
+    [View_comments].[Score] AS [Score], 
+    [View_comments].[Messages] AS [Messages], 
+    [View_comments].[userName] AS [userName], 
+    [View_comments].[Name] AS [Name], 
+    [View_comments].[email] AS [email]
+    FROM [dbo].[View_comments] AS [View_comments]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_product_attribute" EntityType="Self.View_product_attribute" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_product_attribute].[pkID] AS [pkID], 
+    [View_product_attribute].[pName] AS [pName], 
+    [View_product_attribute].[sku] AS [sku], 
+    [View_product_attribute].[description] AS [description], 
+    [View_product_attribute].[price] AS [price], 
+    [View_product_attribute].[createTime] AS [createTime], 
+    [View_product_attribute].[active] AS [active], 
+    [View_product_attribute].[HID] AS [HID], 
+    [View_product_attribute].[FKproduct_ID] AS [FKproduct_ID], 
+    [View_product_attribute].[FKattribute_ID] AS [FKattribute_ID], 
+    [View_product_attribute].[FKvalue_ID] AS [FKvalue_ID], 
+    [View_product_attribute].[attribute_name] AS [attribute_name], 
+    [View_product_attribute].[value] AS [value], 
+    [View_product_attribute].[discount] AS [discount]
+    FROM [dbo].[View_product_attribute] AS [View_product_attribute]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tbl_attribute_values_tbl_attributes" Association="Self.FK_tbl_attribute_values_tbl_attributes">
+            <End Role="tbl_attributes" EntitySet="tbl_attributes" />
+            <End Role="tbl_attribute_values" EntitySet="tbl_attribute_values" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_comments_tbl_products" Association="Self.FK_tbl_comments_tbl_products">
+            <End Role="tbl_products" EntitySet="tbl_products" />
+            <End Role="tbl_comments" EntitySet="tbl_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_comments_tbl_users" Association="Self.FK_tbl_comments_tbl_users">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_comments" EntitySet="tbl_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_images_tbl_products" Association="Self.FK_tbl_images_tbl_products">
+            <End Role="tbl_products" EntitySet="tbl_products" />
+            <End Role="tbl_images" EntitySet="tbl_images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_invoice_tbl_products" Association="Self.FK_tbl_invoice_tbl_products">
+            <End Role="tbl_products" EntitySet="tbl_products" />
+            <End Role="tbl_invoice" EntitySet="tbl_invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_invoice_tbl_users" Association="Self.FK_tbl_invoice_tbl_users">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_invoice" EntitySet="tbl_invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_pictures_tbl_products" Association="Self.FK_tbl_pictures_tbl_products">
+            <End Role="tbl_products" EntitySet="tbl_products" />
+            <End Role="tbl_pictures" EntitySet="tbl_pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_product_attribute_tbl_attribute_values" Association="Self.FK_tbl_product_attribute_tbl_attribute_values">
+            <End Role="tbl_attribute_values" EntitySet="tbl_attribute_values" />
+            <End Role="tbl_product_attribute" EntitySet="tbl_product_attribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_product_attribute_tbl_attributes" Association="Self.FK_tbl_product_attribute_tbl_attributes">
+            <End Role="tbl_attributes" EntitySet="tbl_attributes" />
+            <End Role="tbl_product_attribute" EntitySet="tbl_product_attribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_product_attribute_tbl_products" Association="Self.FK_tbl_product_attribute_tbl_products">
+            <End Role="tbl_products" EntitySet="tbl_products" />
+            <End Role="tbl_product_attribute" EntitySet="tbl_product_attribute" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="redShop2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="redshopDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_attribute_values" EntityType="redShop2Model.tbl_attribute_values" />
+          <EntitySet Name="tbl_attributes" EntityType="redShop2Model.tbl_attributes" />
+          <EntitySet Name="tbl_images" EntityType="redShop2Model.tbl_images" />
+          <EntitySet Name="tbl_invoice" EntityType="redShop2Model.tbl_invoice" />
+          <EntitySet Name="tbl_product_attribute" EntityType="redShop2Model.tbl_product_attribute" />
+          <EntitySet Name="tbl_products" EntityType="redShop2Model.tbl_products" />
+          <EntitySet Name="tbl_users" EntityType="redShop2Model.tbl_users" />
+          <EntitySet Name="tbl_indexcontents" EntityType="redShop2Model.tbl_indexcontents" />
+          <AssociationSet Name="FK_tbl_attribute_values_tbl_attributes" Association="redShop2Model.FK_tbl_attribute_values_tbl_attributes">
+            <End Role="tbl_attributes" EntitySet="tbl_attributes" />
+            <End Role="tbl_attribute_values" EntitySet="tbl_attribute_values" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_product_attribute_tbl_attribute_values" Association="redShop2Model.FK_tbl_product_attribute_tbl_attribute_values">
+            <End Role="tbl_attribute_values" EntitySet="tbl_attribute_values" />
+            <End Role="tbl_product_attribute" EntitySet="tbl_product_attribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_product_attribute_tbl_attributes" Association="redShop2Model.FK_tbl_product_attribute_tbl_attributes">
+            <End Role="tbl_attributes" EntitySet="tbl_attributes" />
+            <End Role="tbl_product_attribute" EntitySet="tbl_product_attribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_images_tbl_products" Association="redShop2Model.FK_tbl_images_tbl_products">
+            <End Role="tbl_products" EntitySet="tbl_products" />
+            <End Role="tbl_images" EntitySet="tbl_images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_invoice_tbl_products" Association="redShop2Model.FK_tbl_invoice_tbl_products">
+            <End Role="tbl_products" EntitySet="tbl_products" />
+            <End Role="tbl_invoice" EntitySet="tbl_invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_invoice_tbl_users" Association="redShop2Model.FK_tbl_invoice_tbl_users">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_invoice" EntitySet="tbl_invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_product_attribute_tbl_products" Association="redShop2Model.FK_tbl_product_attribute_tbl_products">
+            <End Role="tbl_products" EntitySet="tbl_products" />
+            <End Role="tbl_product_attribute" EntitySet="tbl_product_attribute" />
+          </AssociationSet>
+          <EntitySet Name="View_comments" EntityType="redShop2Model.View_comments" />
+          <EntitySet Name="View_product_attribute" EntityType="redShop2Model.View_product_attribute" />
+          <EntitySet Name="tbl_comments" EntityType="redShop2Model.tbl_comments" />
+          <AssociationSet Name="FK_tbl_comments_tbl_products" Association="redShop2Model.FK_tbl_comments_tbl_products">
+            <End Role="tbl_products" EntitySet="tbl_products" />
+            <End Role="tbl_comments" EntitySet="tbl_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_comments_tbl_users" Association="redShop2Model.FK_tbl_comments_tbl_users">
+            <End Role="tbl_users" EntitySet="tbl_users" />
+            <End Role="tbl_comments" EntitySet="tbl_comments" />
+          </AssociationSet>
+          <EntitySet Name="tbl_pictures" EntityType="redShop2Model.tbl_pictures" />
+          <AssociationSet Name="FK_tbl_pictures_tbl_products" Association="redShop2Model.FK_tbl_pictures_tbl_products">
+            <End Role="tbl_products" EntitySet="tbl_products" />
+            <End Role="tbl_pictures" EntitySet="tbl_pictures" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tbl_attribute_values">
+          <Key>
+            <PropertyRef Name="pkID" />
+          </Key>
+          <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FKattribute_ID" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_attributes" Relationship="redShop2Model.FK_tbl_attribute_values_tbl_attributes" FromRole="tbl_attribute_values" ToRole="tbl_attributes" />
+          <NavigationProperty Name="tbl_product_attribute" Relationship="redShop2Model.FK_tbl_product_attribute_tbl_attribute_values" FromRole="tbl_attribute_values" ToRole="tbl_product_attribute" />
+        </EntityType>
+        <EntityType Name="tbl_attributes">
+          <Key>
+            <PropertyRef Name="pkID" />
+          </Key>
+          <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="attribute_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_attribute_values" Relationship="redShop2Model.FK_tbl_attribute_values_tbl_attributes" FromRole="tbl_attributes" ToRole="tbl_attribute_values" />
+          <NavigationProperty Name="tbl_product_attribute" Relationship="redShop2Model.FK_tbl_product_attribute_tbl_attributes" FromRole="tbl_attributes" ToRole="tbl_product_attribute" />
+        </EntityType>
+        <EntityType Name="tbl_images">
+          <Key>
+            <PropertyRef Name="pkId" />
+          </Key>
+          <Property Name="pkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FKproduct_ID" Type="Int32" Nullable="false" />
+          <Property Name="banerphoto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="smallphoto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="photo_1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="photo_2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="photo_3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="photo_4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="photo_5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="photo_6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_products" Relationship="redShop2Model.FK_tbl_images_tbl_products" FromRole="tbl_images" ToRole="tbl_products" />
+        </EntityType>
+        <EntityType Name="tbl_invoice">
+          <Key>
+            <PropertyRef Name="pkID" />
+          </Key>
+          <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="invoice_num" Type="Int64" Nullable="false" />
+          <Property Name="fkProduct_id" Type="Int32" Nullable="false" />
+          <Property Name="productPrice" Type="Int64" Nullable="false" />
+          <Property Name="fkUser_id" Type="Int32" />
+          <Property Name="state" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="orderFname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="orderLname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="orderPhoneNum" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="transID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="transStatus" Type="Boolean" Nullable="false" />
+          <Property Name="fkOrderStatus_id" Type="Int32" Nullable="false" />
+          <Property Name="TrackingCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_products" Relationship="redShop2Model.FK_tbl_invoice_tbl_products" FromRole="tbl_invoice" ToRole="tbl_products" />
+          <NavigationProperty Name="tbl_users" Relationship="redShop2Model.FK_tbl_invoice_tbl_users" FromRole="tbl_invoice" ToRole="tbl_users" />
+          <Property Name="Registered" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_product_attribute">
+          <Key>
+            <PropertyRef Name="pkID" />
+          </Key>
+          <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FKproduct_ID" Type="Int32" Nullable="false" />
+          <Property Name="FKattribute_ID" Type="Int32" Nullable="false" />
+          <Property Name="FKvalue_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_attribute_values" Relationship="redShop2Model.FK_tbl_product_attribute_tbl_attribute_values" FromRole="tbl_product_attribute" ToRole="tbl_attribute_values" />
+          <NavigationProperty Name="tbl_attributes" Relationship="redShop2Model.FK_tbl_product_attribute_tbl_attributes" FromRole="tbl_product_attribute" ToRole="tbl_attributes" />
+          <NavigationProperty Name="tbl_products" Relationship="redShop2Model.FK_tbl_product_attribute_tbl_products" FromRole="tbl_product_attribute" ToRole="tbl_products" />
+        </EntityType>
+        <EntityType Name="tbl_products">
+          <Key>
+            <PropertyRef Name="pkID" />
+          </Key>
+          <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sku" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int64" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="createTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="discount" Type="Decimal" Precision="3" Scale="0" />
+          <NavigationProperty Name="tbl_images" Relationship="redShop2Model.FK_tbl_images_tbl_products" FromRole="tbl_products" ToRole="tbl_images" />
+          <NavigationProperty Name="tbl_invoice" Relationship="redShop2Model.FK_tbl_invoice_tbl_products" FromRole="tbl_products" ToRole="tbl_invoice" />
+          <NavigationProperty Name="tbl_product_attribute" Relationship="redShop2Model.FK_tbl_product_attribute_tbl_products" FromRole="tbl_products" ToRole="tbl_product_attribute" />
+          <NavigationProperty Name="tbl_comments" Relationship="redShop2Model.FK_tbl_comments_tbl_products" FromRole="tbl_products" ToRole="tbl_comments" />
+          <NavigationProperty Name="tbl_pictures" Relationship="redShop2Model.FK_tbl_pictures_tbl_products" FromRole="tbl_products" ToRole="tbl_pictures" />
+        </EntityType>
+        <EntityType Name="tbl_users">
+          <Key>
+            <PropertyRef Name="pkID" />
+          </Key>
+          <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userHID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="userName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="lName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="userPass" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="registeryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tbl_invoice" Relationship="redShop2Model.FK_tbl_invoice_tbl_users" FromRole="tbl_users" ToRole="tbl_invoice" />
+          <NavigationProperty Name="tbl_comments" Relationship="redShop2Model.FK_tbl_comments_tbl_users" FromRole="tbl_users" ToRole="tbl_comments" />
+        </EntityType>
+        <EntityType Name="tbl_indexcontents">
+          <Key>
+            <PropertyRef Name="pkID" />
+            <PropertyRef Name="ContentsName" />
+            <PropertyRef Name="ContentsValue" />
+            <PropertyRef Name="Description" />
+          </Key>
+          <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContentsName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContentsValue" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_tbl_attribute_values_tbl_attributes">
+          <End Type="redShop2Model.tbl_attributes" Role="tbl_attributes" Multiplicity="1" />
+          <End Type="redShop2Model.tbl_attribute_values" Role="tbl_attribute_values" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_attributes">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_attribute_values">
+              <PropertyRef Name="FKattribute_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_product_attribute_tbl_attribute_values">
+          <End Type="redShop2Model.tbl_attribute_values" Role="tbl_attribute_values" Multiplicity="1" />
+          <End Type="redShop2Model.tbl_product_attribute" Role="tbl_product_attribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_attribute_values">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_product_attribute">
+              <PropertyRef Name="FKvalue_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_product_attribute_tbl_attributes">
+          <End Type="redShop2Model.tbl_attributes" Role="tbl_attributes" Multiplicity="1" />
+          <End Type="redShop2Model.tbl_product_attribute" Role="tbl_product_attribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_attributes">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_product_attribute">
+              <PropertyRef Name="FKattribute_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_images_tbl_products">
+          <End Type="redShop2Model.tbl_products" Role="tbl_products" Multiplicity="1" />
+          <End Type="redShop2Model.tbl_images" Role="tbl_images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_products">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_images">
+              <PropertyRef Name="FKproduct_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_invoice_tbl_products">
+          <End Type="redShop2Model.tbl_products" Role="tbl_products" Multiplicity="1" />
+          <End Type="redShop2Model.tbl_invoice" Role="tbl_invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_products">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_invoice">
+              <PropertyRef Name="fkProduct_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_invoice_tbl_users">
+          <End Type="redShop2Model.tbl_users" Role="tbl_users" Multiplicity="0..1" />
+          <End Type="redShop2Model.tbl_invoice" Role="tbl_invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_invoice">
+              <PropertyRef Name="fkUser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_product_attribute_tbl_products">
+          <End Type="redShop2Model.tbl_products" Role="tbl_products" Multiplicity="1" />
+          <End Type="redShop2Model.tbl_product_attribute" Role="tbl_product_attribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_products">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_product_attribute">
+              <PropertyRef Name="FKproduct_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="View_comments">
+          <Key>
+            <PropertyRef Name="pkId" />
+            <PropertyRef Name="fkproductID" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="time" />
+            <PropertyRef Name="Score" />
+            <PropertyRef Name="Messages" />
+          </Key>
+          <Property Name="pkId" Type="Int32" Nullable="false" />
+          <Property Name="fkUserID" Type="Int32" />
+          <Property Name="fkproductID" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Score" Type="Int32" Nullable="false" />
+          <Property Name="Messages" Type="String" Nullable="false" MaxLength="750" FixedLength="false" Unicode="true" />
+          <Property Name="userName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_product_attribute">
+          <Key>
+            <PropertyRef Name="pkID" />
+            <PropertyRef Name="pName" />
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="description" />
+            <PropertyRef Name="price" />
+            <PropertyRef Name="createTime" />
+            <PropertyRef Name="active" />
+            <PropertyRef Name="FKproduct_ID" />
+            <PropertyRef Name="FKattribute_ID" />
+            <PropertyRef Name="FKvalue_ID" />
+            <PropertyRef Name="attribute_name" />
+            <PropertyRef Name="value" />
+          </Key>
+          <Property Name="pkID" Type="Int32" Nullable="false" />
+          <Property Name="pName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sku" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int64" Nullable="false" />
+          <Property Name="createTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="HID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FKproduct_ID" Type="Int32" Nullable="false" />
+          <Property Name="FKattribute_ID" Type="Int32" Nullable="false" />
+          <Property Name="FKvalue_ID" Type="Int32" Nullable="false" />
+          <Property Name="attribute_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="discount" Type="Decimal" Precision="3" Scale="0" />
+        </EntityType>
+        <EntityType Name="tbl_comments">
+          <Key>
+            <PropertyRef Name="pkId" />
+          </Key>
+          <Property Name="pkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fkUserID" Type="Int32" />
+          <Property Name="fkproductID" Type="Int32" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="Score" Type="Int32" Nullable="false" />
+          <Property Name="Messages" Type="String" Nullable="false" MaxLength="750" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tbl_products" Relationship="redShop2Model.FK_tbl_comments_tbl_products" FromRole="tbl_comments" ToRole="tbl_products" />
+          <NavigationProperty Name="tbl_users" Relationship="redShop2Model.FK_tbl_comments_tbl_users" FromRole="tbl_comments" ToRole="tbl_users" />
+        </EntityType>
+        <Association Name="FK_tbl_comments_tbl_products">
+          <End Type="redShop2Model.tbl_products" Role="tbl_products" Multiplicity="1" />
+          <End Type="redShop2Model.tbl_comments" Role="tbl_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_products">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_comments">
+              <PropertyRef Name="fkproductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_comments_tbl_users">
+          <End Type="redShop2Model.tbl_users" Role="tbl_users" Multiplicity="0..1" />
+          <End Type="redShop2Model.tbl_comments" Role="tbl_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_users">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_comments">
+              <PropertyRef Name="fkUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_pictures">
+          <Key>
+            <PropertyRef Name="pkID" />
+          </Key>
+          <Property Name="pkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FKproductID" Type="Int32" Nullable="false" />
+          <Property Name="PicSrc" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="MainPic" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tbl_products" Relationship="redShop2Model.FK_tbl_pictures_tbl_products" FromRole="tbl_pictures" ToRole="tbl_products" />
+        </EntityType>
+        <Association Name="FK_tbl_pictures_tbl_products">
+          <End Type="redShop2Model.tbl_products" Role="tbl_products" Multiplicity="1" />
+          <End Type="redShop2Model.tbl_pictures" Role="tbl_pictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_products">
+              <PropertyRef Name="pkID" />
+            </Principal>
+            <Dependent Role="tbl_pictures">
+              <PropertyRef Name="FKproductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="redShop2ModelStoreContainer" CdmEntityContainer="redshopDB">
+          <EntitySetMapping Name="tbl_attribute_values">
+            <EntityTypeMapping TypeName="redShop2Model.tbl_attribute_values">
+              <MappingFragment StoreEntitySet="tbl_attribute_values">
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="FKattribute_ID" ColumnName="FKattribute_ID" />
+                <ScalarProperty Name="pkID" ColumnName="pkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_attributes">
+            <EntityTypeMapping TypeName="redShop2Model.tbl_attributes">
+              <MappingFragment StoreEntitySet="tbl_attributes">
+                <ScalarProperty Name="attribute_name" ColumnName="attribute_name" />
+                <ScalarProperty Name="pkID" ColumnName="pkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_images">
+            <EntityTypeMapping TypeName="redShop2Model.tbl_images">
+              <MappingFragment StoreEntitySet="tbl_images">
+                <ScalarProperty Name="photo_6" ColumnName="photo_6" />
+                <ScalarProperty Name="photo_5" ColumnName="photo_5" />
+                <ScalarProperty Name="photo_4" ColumnName="photo_4" />
+                <ScalarProperty Name="photo_3" ColumnName="photo_3" />
+                <ScalarProperty Name="photo_2" ColumnName="photo_2" />
+                <ScalarProperty Name="photo_1" ColumnName="photo_1" />
+                <ScalarProperty Name="smallphoto" ColumnName="smallphoto" />
+                <ScalarProperty Name="banerphoto" ColumnName="banerphoto" />
+                <ScalarProperty Name="FKproduct_ID" ColumnName="FKproduct_ID" />
+                <ScalarProperty Name="pkId" ColumnName="pkId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_invoice">
+            <EntityTypeMapping TypeName="redShop2Model.tbl_invoice">
+              <MappingFragment StoreEntitySet="tbl_invoice">
+                <ScalarProperty Name="Registered" ColumnName="Registered" />
+                <ScalarProperty Name="TrackingCode" ColumnName="TrackingCode" />
+                <ScalarProperty Name="fkOrderStatus_id" ColumnName="fkOrderStatus_id" />
+                <ScalarProperty Name="transStatus" ColumnName="transStatus" />
+                <ScalarProperty Name="transID" ColumnName="transID" />
+                <ScalarProperty Name="orderPhoneNum" ColumnName="orderPhoneNum" />
+                <ScalarProperty Name="orderLname" ColumnName="orderLname" />
+                <ScalarProperty Name="orderFname" ColumnName="orderFname" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="fkUser_id" ColumnName="fkUser_id" />
+                <ScalarProperty Name="productPrice" ColumnName="productPrice" />
+                <ScalarProperty Name="fkProduct_id" ColumnName="fkProduct_id" />
+                <ScalarProperty Name="invoice_num" ColumnName="invoice_num" />
+                <ScalarProperty Name="pkID" ColumnName="pkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_product_attribute">
+            <EntityTypeMapping TypeName="redShop2Model.tbl_product_attribute">
+              <MappingFragment StoreEntitySet="tbl_product_attribute">
+                <ScalarProperty Name="FKvalue_ID" ColumnName="FKvalue_ID" />
+                <ScalarProperty Name="FKattribute_ID" ColumnName="FKattribute_ID" />
+                <ScalarProperty Name="FKproduct_ID" ColumnName="FKproduct_ID" />
+                <ScalarProperty Name="pkID" ColumnName="pkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_products">
+            <EntityTypeMapping TypeName="redShop2Model.tbl_products">
+              <MappingFragment StoreEntitySet="tbl_products">
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="HID" ColumnName="HID" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="pName" ColumnName="pName" />
+                <ScalarProperty Name="pkID" ColumnName="pkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_users">
+            <EntityTypeMapping TypeName="redShop2Model.tbl_users">
+              <MappingFragment StoreEntitySet="tbl_users">
+                <ScalarProperty Name="registeryDate" ColumnName="registeryDate" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="userPass" ColumnName="userPass" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="lName" ColumnName="lName" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userHID" ColumnName="userHID" />
+                <ScalarProperty Name="pkID" ColumnName="pkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_indexcontents">
+            <EntityTypeMapping TypeName="redShop2Model.tbl_indexcontents">
+              <MappingFragment StoreEntitySet="tbl_indexcontents">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ContentsValue" ColumnName="ContentsValue" />
+                <ScalarProperty Name="ContentsName" ColumnName="ContentsName" />
+                <ScalarProperty Name="pkID" ColumnName="pkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_comments">
+            <EntityTypeMapping TypeName="redShop2Model.View_comments">
+              <MappingFragment StoreEntitySet="View_comments">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="Messages" ColumnName="Messages" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="fkproductID" ColumnName="fkproductID" />
+                <ScalarProperty Name="fkUserID" ColumnName="fkUserID" />
+                <ScalarProperty Name="pkId" ColumnName="pkId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_product_attribute">
+            <EntityTypeMapping TypeName="redShop2Model.View_product_attribute">
+              <MappingFragment StoreEntitySet="View_product_attribute">
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="attribute_name" ColumnName="attribute_name" />
+                <ScalarProperty Name="FKvalue_ID" ColumnName="FKvalue_ID" />
+                <ScalarProperty Name="FKattribute_ID" ColumnName="FKattribute_ID" />
+                <ScalarProperty Name="FKproduct_ID" ColumnName="FKproduct_ID" />
+                <ScalarProperty Name="HID" ColumnName="HID" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="pName" ColumnName="pName" />
+                <ScalarProperty Name="pkID" ColumnName="pkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_comments">
+            <EntityTypeMapping TypeName="redShop2Model.tbl_comments">
+              <MappingFragment StoreEntitySet="tbl_comments">
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Messages" ColumnName="Messages" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="fkproductID" ColumnName="fkproductID" />
+                <ScalarProperty Name="fkUserID" ColumnName="fkUserID" />
+                <ScalarProperty Name="pkId" ColumnName="pkId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_pictures">
+            <EntityTypeMapping TypeName="redShop2Model.tbl_pictures">
+              <MappingFragment StoreEntitySet="tbl_pictures">
+                <ScalarProperty Name="MainPic" ColumnName="MainPic" />
+                <ScalarProperty Name="PicSrc" ColumnName="PicSrc" />
+                <ScalarProperty Name="FKproductID" ColumnName="FKproductID" />
+                <ScalarProperty Name="pkID" ColumnName="pkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
